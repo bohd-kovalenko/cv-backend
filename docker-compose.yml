@@ -1,0 +1,22 @@
+version: "3"
+services:
+  cv-backend-postgres:
+    image: postgres
+    container_name: cv-backend-postgres
+    ports:
+      - "5430:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass23
+      POSTGRES_DB: cv-backend-db
+#    volumes:
+#      - dataox-postgres-data:/var/lib/postgresql/data
+  cv-backend-application:
+    container_name: "cv-backend-application"
+    image: jey6/cv-backend:latest
+    ports:
+      - "8082:8080"
+    depends_on:
+      - cv-backend-postgres
+#volumes:
+#  dataox-postgres-data:
